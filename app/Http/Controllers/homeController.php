@@ -11,31 +11,16 @@ use Session;
 use Auth;
 use App\User;
 use App\giangvien;
-use App\bangcaps;
 use App\sinhvien;
-use App\khoa;
 use App\lop;
-use App\detai;
+
 class homeController extends sharecontroller
 {
     function __construct() { 
         view::share('stt','1');
-        $detai = detai::get();
         $user = user::get();
-        $danhsachdt = detai::join('sinhvien','sinhvien.id','detais.idsinhvien')
-        ->where('daduyet','1')->where('thamkhao','0')->get();
-        $thamkhao = detai::join('sinhvien','sinhvien.id', 'detais.idsinhvien')
-        ->where('daduyet','1')->where('thamkhao','1')->get();
-        $duyet = sinhvien::join('detais','detais.idsinhvien', 'sinhvien.id')
-        ->where('daduyet','0')->get();
-        $capgv = giangvien::join('bangcaps','giangvien.idcap', 'bangcaps.id')
-        ->get();
-        view::share('detai',$detai);
         view::share('user',$user);
-        view::share('danhsachdt',$danhsachdt);
-        view::share('thamkhao',$thamkhao);
-        view::share('duyet',$duyet);
-        view::share('capgv',$capgv);
+
         // $this->middleware('auth')->except('logout');
         // if(auth::check()){
         $this->middleware(function ($request, $next) {
@@ -47,9 +32,6 @@ class homeController extends sharecontroller
             view::share('sinhvien',$sinhvien);
             view::share('giangvien',$giangvien);
             view::share('iduser',$id);
-            $dkdt = detai::join('sinhvien','sinhvien.id', 'detais.idsinhvien')
-            ->where('idusers',$id)->get();
-            view::share('dkdt',$dkdt); 
             return $next($request);
         }else{
             return $next($request);
