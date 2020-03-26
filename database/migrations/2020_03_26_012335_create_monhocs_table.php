@@ -16,7 +16,7 @@ class CreateMonhocsTable extends Migration
         Schema::create('monhocs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tenmonhoc');
-            $table->integer('sotinchi');
+            $table->tinyInteger('sotinchi');
             $table->unsignedBigInteger('idbomon');
             $table->foreign('idbomon')->references('id')->on('bomons')->onDelete('cascade');
             $table->timestamps();
