@@ -15,10 +15,10 @@ class CreateDiemsTable extends Migration
     {
         Schema::create('diems', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cc')->nullable();
-            $table->integer('tx')->nullable();
-            $table->integer('gk')->nullable();
-            $table->integer('kt')->nullable();
+            $table->float('cc')->nullable();
+            $table->float('tx')->nullable();
+            $table->float('gk')->nullable();
+            $table->float('kt')->nullable();
             $table->unsignedBigInteger('idmonhoc');
             $table->foreign('idmonhoc')->references('id')->on('monhocs')->onDelete('cascade');
             $table->unsignedBigInteger('idgv');
