@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin'],function(){
 	});
 });
 Route::get('menu','loaitinController@getMenu')->name('menu');
-Route::get('trangchu','tintucController@getHome')->name('home');
+Route::get('home','tintucController@getHome')->name('home');
 Route::get('tintuc/{tieude}','tintucController@viewTin')->name('viewTin');
 Route::get('loaitin/{tieude}','tintucController@listNews')->name('listNews');
 

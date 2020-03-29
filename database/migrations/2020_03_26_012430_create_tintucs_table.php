@@ -19,8 +19,8 @@ class CreateTintucsTable extends Migration
             $table->string('nd');
             $table->text('video')->nullable();
             $table->text('img')->nullable();
-            $table->unsignedBigInteger('idtl');
-            $table->foreign('idtl')->references('id')->on('theloais')->onDelete('cascade');
+            $table->unsignedBigInteger('idlt');
+            $table->foreign('idlt')->references('id')->on('loaitins')->onDelete('cascade');
             $table->timestamps();
         });
     }

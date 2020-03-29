@@ -19,8 +19,6 @@ class CreateLoaitinsTable extends Migration
             $table->string('tenkhongdau');
             $table->integer('menu');
             $table->integer('gioithieu');
-            $table->unsignedBigInteger('idtl');
-            $table->foreign('idtl')->references('id')->on('theloais')->onDelete('cascade');
             $table->timestamps();
         });
     }
