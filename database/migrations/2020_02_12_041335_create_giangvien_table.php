@@ -17,8 +17,8 @@ class CreateGiangvienTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('idusers');
             $table->foreign('idusers')->references('id')->on('users')->onDelete('cascade');
-            $table->string('ho',255)->nullable();
-            $table->string('ten',255)->nullable();
+            $table->string('ho',255);
+            $table->string('ten',255);
             $table->tinyInteger('gioitinh')->nullable();
             $table->date('ngaysinh')->nullable();
             $table->string('quequan',255)->nullable();

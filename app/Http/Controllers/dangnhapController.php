@@ -21,6 +21,25 @@ use App\User;
 
 class dangnhapController extends Controller
 {
+    function __construct() { 
+        view::share('stt','1');
+        $user = user::get();
+        view::share('user',$user);
+        $this->middleware(function ($request, $next) {
+        $this->id = Auth::user();
+        if($this->id!=null){
+            $id = Auth::user()->id;
+            $sinhvien = sinhvien::where('idusers',$id)->get();
+            $giangvien = giangvien::where('idusers',$id)->get();    
+            view::share('sinhvien',$sinhvien);
+            view::share('giangvien',$giangvien);
+            view::share('iduser',$id);
+            return $next($request);
+        }else{
+            return $next($request);
+        }
+    });
+    }
     function getadmin() {
         return view('admin');
     }
@@ -54,14 +73,8 @@ class dangnhapController extends Controller
     public function infor(){
         if(Auth::check())
         {
-            $id = Auth::user()->id;
-            $sinhvien = sinhvien::where('idusers',$id)->get();
-            $giangvien = giangvien::where('idusers',$id)->get();
-            view()->share('id',$id);
-            view()->share('sinhvien',$sinhvien);
-            view()->share('giangvien',$giangvien);
+            return view('pages.inforuser');
         }
-        return view('pages.inforuser');
     }
 }
 

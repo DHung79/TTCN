@@ -25,34 +25,11 @@
 				</li>
 				@endforeach
 				@if(Auth::check())
-					@if(Auth::user()->level==3)
-						<li class="nav-item">
-						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
-							@foreach ($sinhvien as $sv)
-							{{$sv->ho}}
-							{{$sv->ten}}   
-							@endforeach
-						</a>
-						</li>
-					@endif
-					@if(Auth::user()->level==2)
-						<li class="nav-item ">
-						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
-							@foreach ($giangvien as $gv)
-							{{$gv->ho}}
-							{{$gv->ten}}   
-							@endforeach
-						</a>
-						</li>
-					@endif
 					@if(Auth::user()->level==1)
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ route('getaddadmin') }}">Thêm admin</a>
-						</li>
-					@endif
-					<li class="nav-item ">
-						<a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ route('getaddadmin') }}">Thêm admin</a>
 					</li>
+					@endif
 				@endif
 			</ul>
 		</div>  

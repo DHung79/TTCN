@@ -61,7 +61,16 @@ class loaitinController extends Controller
     public function getMenu(){
     	$menu = loaitin::where('menu','1')->get();
     	$gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
-    	$menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
+		$menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
+		if(Auth::check())
+        {
+            $id = Auth::user()->id;
+            $sinhvien = sinhvien::where('idusers',$id)->get();
+            $giangvien = giangvien::where('idusers',$id)->get();
+            view()->share('id',$id);
+            view()->share('sinhvien',$sinhvien);
+            view()->share('giangvien',$giangvien);
+        }
     	return view('master.navigation',['menu'=>$menu,'gioithieu'=>$menuGioiThieu]);
     }
 }

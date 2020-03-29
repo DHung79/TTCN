@@ -2,14 +2,6 @@
 
 @section('noidung')
 <section>
-<span class="error-center">@if(count($errors)>0)
-					@foreach($errors->all() as $err)
-						{{$err}}</br>
-					@endforeach
-				@endif
-				@if(session('status'))
-					{{session('status')}}
-				@endif</span>
 	<div class="row" style="margin: 0;">
 		<div class="main">
 			<div class="main-slide">
@@ -97,9 +89,42 @@
 			</div>
 		</div>
 		<div class="right-panel">
-		@if(!Auth::check())
-			@include('master.login')
-		@endif
+			@if(Auth::check())
+			<div class="box box-margin">
+				<form method="post" class="form-logon">
+					@if(Auth::user()->level==3)
+						<h4>Sinh viêm</h4>
+						<li class="nav-item">
+						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
+							@foreach ($sinhvien as $sv)
+							{{$sv->ho}}
+							{{$sv->ten}}   
+							@endforeach
+						</a>
+						</li>
+					@endif
+					@if(Auth::user()->level==2)
+						<h4>Giảng viên</h4>
+						<li class="nav-item ">
+						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
+							@foreach ($giangvien as $gv)
+							{{$gv->ho}}
+							{{$gv->ten}}   
+							@endforeach
+						</a>
+						</li>
+					@endif
+					@if(Auth::user()->level==1)
+						<h4>Admin</h4>
+					@endif
+					<li class="nav-item ">
+						<a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a>
+					</li>
+					</div>
+				</form>
+			@else
+				@include('master.login')	
+			@endif
 			@include('master.thongbaochinh')
 			@include('master.video')
 		</div>
@@ -108,6 +133,6 @@
 
 @endsection
 
-@section('script')
+{{-- @section('script')
 	@include('master.script')
-@endsection
+@endsection --}}

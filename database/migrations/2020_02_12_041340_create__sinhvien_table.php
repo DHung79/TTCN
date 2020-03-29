@@ -17,12 +17,12 @@ class CreateSinhvienTable extends Migration
             $table->bigIncrements('id');
             $table->string('ho',255);
             $table->string('ten',255);
-            $table->tinyInteger('gioitinh');
-            $table->date('ngaysinh');
-            $table->string('quequan',255);
-            $table->string('diachi',255);
-            $table->integer('sodt');
-            $table->year('nienkhoa');
+            $table->tinyInteger('gioitinh')->nullable();
+            $table->date('ngaysinh')->nullable();
+            $table->string('quequan',255)->nullable();
+            $table->string('diachi',255)->nullable();
+            $table->integer('sodt')->nullable();
+            $table->year('nienkhoa')->nullable();
             $table->unsignedBigInteger('idusers');
             $table->foreign('idusers')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('idlop');

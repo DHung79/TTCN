@@ -24,9 +24,12 @@ class homeController extends sharecontroller
     function __construct() { 
         view::share('stt','1');
         $user = user::get();
+        $menu = loaitin::where('menu','1')->get();
+    	$gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
+		$menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
         view::share('user',$user);
-        // $this->middleware('auth')->except('logout');
-        // if(auth::check()){
+        view::share('menu',$menu);
+        view::share('gioithieu',$menuGioiThieu);
         $this->middleware(function ($request, $next) {
         $this->id = Auth::user();
         if($this->id!=null){
@@ -36,7 +39,6 @@ class homeController extends sharecontroller
             view::share('sinhvien',$sinhvien);
             view::share('giangvien',$giangvien);
             view::share('iduser',$id);
-
             return $next($request);
         }else{
             return $next($request);

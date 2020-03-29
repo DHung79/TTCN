@@ -211,7 +211,9 @@ section{
 .form-login{
 	padding: 0px 5px;
 }
-
+.form-logon{
+	background-color: #eeeeee;
+}
 .form-login input{
 	width: 100%;
 	margin-bottom: 15px;

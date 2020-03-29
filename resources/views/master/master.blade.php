@@ -19,6 +19,7 @@
 				<img src="https://www.khanhhoa.gov.vn/Resources/ImagesPortal/HomePage/imgs/Logo.png">
 			</div>
 			<div id="nav">
+				@include('master.navigation')
 		</header>
 		@yield('noidung')
 		@include('master.footer')

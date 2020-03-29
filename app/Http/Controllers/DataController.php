@@ -23,9 +23,12 @@ class DataController extends Controller
 {
     public function defaultdata(){
         user::insert([ 
-            ['email' => 'daoleduyhung@gmail.com','level'=>1,'password'=> bcrypt('hung0403')],
+            ['email' => 'daoleduyhung@gmail.com','level'=>3,'password'=> bcrypt('hung0403')],
             ['email' => 'nguyenvanhoan@gmail.com','level'=>2,'password'=> bcrypt('hung0403')],
             ['email' => 'lungthilinh@gmail.com','level'=>3,'password'=> bcrypt('hung0403')]
+        ]);
+        user::insert([ 
+        ['id'=>0,'email' => 'admin','level'=>1,'password'=> bcrypt('hung0403')]
         ]);
         loaitin::insert([ 
             ['tenloaitin' => 'Sự kiện','tenkhongdau'=>'SuKien','menu'=>1,'gioithieu'=>1],
@@ -41,5 +44,23 @@ class DataController extends Controller
             ['tentin' => 'Điểm HK1 DHCN3','nd'=>'Điểm HK1 DHCN3','tomtat'=>'Điểm HK1 DHCN3','slide'=>1,'thongbaochinh'=>1,'idlt'=>4],
             ['tentin' => 'Bài giảng lập trình PHP','nd'=>'Bài giảng lập trình PHP','tomtat'=>'Bài giảng lập trình PHP','slide'=>1,'thongbaochinh'=>1,'idlt'=>5]
         ]);
+        lop::insert([
+            ['tenlop' => 'ĐHCN3A'],
+            ['tenlop' => 'ĐHCN3B'],
+            ['tenlop' => 'ĐHCN4A'],
+            ['tenlop' => 'ĐHCN4B'],
+            ['tenlop' => 'ĐHVT3A'],
+            ['tenlop' => 'ĐHVT3B'],
+            ['tenlop' => 'ĐHVT4A'],
+            ['tenlop' => 'ĐHVT4B']
+        ]);
+        sinhvien::insert([ 
+            ['ho' => 'Lung','ten'=>'Thị Linh','idusers'=> 3,'idlop' => 2],
+            ['ho' => 'Đào Lê','ten'=>'Duy Hùng','idusers'=> 1,'idlop' => 1]
+        ]);
+        giangvien::insert([ 
+            ['ho' => 'Nguyễn','ten'=>'Văn Hoàn','idusers'=> 2]
+        ]);
+        
     }
 }
