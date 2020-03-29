@@ -7,7 +7,7 @@ li{
 }
 
 .header{
-	background: #0300cc;
+	background: #17A290;
 }
 
 .header .logo{
@@ -17,7 +17,7 @@ li{
 }
 
 .header .logo img{
-	max-width: 100%;
+	max-width: 50%;
 }
 
 .container{
@@ -71,10 +71,20 @@ li{
 		width: 100%;
 	}
 }
-
-
+iframe{
+	padding: 0px 5px;
+	height: 290px; 
+	width: 100%;
+}
+.title iframe{
+	padding: 0px 5px;
+	height: 220px; 
+	width: 100%;
+}
 
 .box {
+	height: auto;
+	padding-bottom: 10px;
     background-repeat: repeat-x;
     background-position: top;
     border-left: #bfc0b8 1px solid;
@@ -91,7 +101,7 @@ li{
     line-height: 30px;
     font-weight: bold;
     color: #fff;
-    background: #0300cc;
+    background: #007bff;
     padding-left: 10px;
     box-shadow: 0px 1px 2px 0px #B6B6B6;
     border-left: #bfc0b8 1px solid;
@@ -226,7 +236,13 @@ section{
 .login-btn{
 	width: 100%;
 	text-align: center;
-	background: #343a40;
+	background: #17a2b8;
+	color: #fff;
+}
+.login-btn:hover{
+	width: 100%;
+	text-align: center;
+	background: #dc3535;
 	color: #fff;
 }
 
@@ -282,7 +298,7 @@ section{
     color: #FFFFFF;
     font-size: 14px;
     line-height: normal;
-    background: #0300cc;
+    background: #17A290;
 }
 
 .form-add{

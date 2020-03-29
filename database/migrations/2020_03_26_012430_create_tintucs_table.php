@@ -16,6 +16,7 @@ class CreateTintucsTable extends Migration
         Schema::create('tintucs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tentin');
+            $table->string('tenkhongdau');
             $table->string('nd');
             $table->mediumText('tomtat');
             $table->integer('slide');

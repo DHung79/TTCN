@@ -8,13 +8,13 @@
 						<div class="main-panel">
 							<div class="news">
 								<div class="news-title">
-									<h3><span style="text-align: justify;font-size: 20px;">{{$tintuc->tieude}}</span></h3>
+									<h3><span style="text-align: justify;font-size: 20px;">{{$tintuc->tentin}}</span></h3>
 								</div>
 								<div class="time-up">
 									<span>{{date('l d-m-yy h:i A',strtotime($tintuc->created_at)+7*60*60)}}</span>
 								</div>
 								<div class="index">
-									{!!$tintuc->noidung!!}
+									{!!$tintuc->nd!!}
 								</div>
 							</div>
 						</div>

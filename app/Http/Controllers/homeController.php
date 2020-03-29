@@ -28,11 +28,13 @@ class homeController extends sharecontroller
         $menu = loaitin::where('menu','1')->get();
         $gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
         $menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
+        $gtlist = loaitin::join('tintucs','loaitins.id','tintucs.idlt')->where('gioithieu','1')->get();
         $loaitin = loaitin::all();
-        $tintuc = tintuc::join('loaitin','tintuc.idlt','loaitin.id')
+        $tintuc = tintuc::join('loaitins','tintucs.idlt','loaitins.id')
         ->orderBy('created_at','desc')
-        ->select('tintuc.id','tintuc.tieude','tintuc.img','tintuc.tenkhongdau','tintuc.slide','loaitin.tenloaitin','tintuc.created_at','tintuc.thongbaochinh')->get();
+        ->select('tintucs.id','tintucs.tentin','tintucs.img','loaitins.tenkhongdau','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
         view::share('tintuc',$tintuc);
+        view::share('gtlist',$gtlist);
         view::share('loaitin',$loaitin);
         view::share('user',$user);
         view::share('menu',$menu);

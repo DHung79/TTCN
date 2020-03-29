@@ -15,13 +15,15 @@
 								<div class="carousel-item @if($key == 0) active @endif">
 									<div class="row slide-height">
 										<div class="col-md-6">
-											<a href="{{route('viewTin',['tentin'=>$slide->tenkhongdau.'-'.$slide->id])}}"><img src="{{asset($slide->img)}}"></a>
+											<a href="{{route('viewTin',['tentin'=>$slide->tenkhongdau.'-'.$slide->id])}}"><img src="{{asset($slide->img)}}">
+											</a>
 										</div>
 										<div class="col-md-6">
 											<div class="title">
 												<a href="{{route('viewTin',['tentin'=>$slide->tenkhongdau.'-'.$slide->id])}}"><h3>{{$slide->tentin}}</h3>
 												</a>
 												<h5>{{$slide->tomtat}}</h5>
+												<iframe src="{{asset($slide->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 											</div>
 										</div>
 									</div>
@@ -70,6 +72,7 @@
 								<div class="col-md-6">
 									<div class="list-new">
 										<ul>
+											<iframe src="{{asset($value[0]->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 											@foreach($value as $news)
 												@if($news->id != $value[0]->id)
 											<li><img src="{{asset('img/icon_new.png')}}"><a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">{{$news->tentin}}</a></li>

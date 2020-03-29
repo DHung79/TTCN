@@ -14,7 +14,7 @@
 						Giới Thiệu
 					</a>
 					<div class="dropdown-menu">
-						@foreach($gioithieu as $gt)
+						@foreach($gtlist as $gt)
 						<a class="dropdown-item" href="{{route('viewTin',['tentin'=>$gt->tenkhongdau.'-'.$gt->id])}}">{{$gt->tentin}}</a>
 						@endforeach
 					</div>

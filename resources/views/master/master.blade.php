@@ -16,7 +16,7 @@
 	<div class="container">
 		<header class="header">
 			<div class="logo">
-				<img src="https://www.khanhhoa.gov.vn/Resources/ImagesPortal/HomePage/imgs/Logo.png">
+				<img src="/img/Untitled-1.png">
 			</div>
 			<div id="nav">
 				@include('master.navigation')

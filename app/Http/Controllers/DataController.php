@@ -38,11 +38,11 @@ class DataController extends Controller
             ['tenloaitin' => 'Tài liệu','tenkhongdau'=>'TaiLieu','menu'=>1,'gioithieu'=>1]
         ]);
         tintuc::insert([ 
-            ['tentin' => 'Mùa Hè Xanh','nd'=>'Mùa Hè Xanh','tomtat'=>'Mùa Hè Xanh','slide'=>1,'thongbaochinh'=>1,'idlt'=>1],
-            ['tentin' => 'Lập trình C#','nd'=>'Lập trình C#','tomtat'=>'Lập trình C#','slide'=>1,'thongbaochinh'=>1,'idlt'=>2],
-            ['tentin' => 'Luận văn tốt nghiệp DHCN3','nd'=>'Luận văn tốt nghiệp DHCN3','tomtat'=>'Luận văn tốt nghiệp DHCN3','slide'=>1,'thongbaochinh'=>1,'idlt'=>3],
-            ['tentin' => 'Điểm HK1 DHCN3','nd'=>'Điểm HK1 DHCN3','tomtat'=>'Điểm HK1 DHCN3','slide'=>1,'thongbaochinh'=>1,'idlt'=>4],
-            ['tentin' => 'Bài giảng lập trình PHP','nd'=>'Bài giảng lập trình PHP','tomtat'=>'Bài giảng lập trình PHP','slide'=>1,'thongbaochinh'=>1,'idlt'=>5]
+            ['tentin' => 'Mùa Hè Xanh','tenkhongdau' => 'MuaHeXanh','nd'=>'Mùa Hè Xanh','tomtat'=>'Mùa Hè Xanh','slide'=>1,'thongbaochinh'=>1,'video'=>'https://www.youtube.com/embed/FlvEyTgYQiM','img'=>'/img/1d2be58a6860c8692963c1b73c797f4743f507c0_00.gif','idlt'=>1],
+            ['tentin' => 'Lập trình C#','tenkhongdau' => 'LapTrinhCSap','nd'=>'Lập trình C#','tomtat'=>'Lập trình C#','slide'=>1,'thongbaochinh'=>1,'video'=>'https://www.youtube.com/embed/9kohr6pMwag','img'=>'/img/tenor (5).gif','idlt'=>2],
+            ['tentin' => 'Luận văn tốt nghiệp DHCN3','tenkhongdau' => 'LuanVanTotNghiepDHCN3','nd'=>'Luận văn tốt nghiệp DHCN3','tomtat'=>'Luận văn tốt nghiệp DHCN3','slide'=>1,'video'=>'https://www.youtube.com/embed/MPVLdZCkPlA','img'=>'/img/44118c6abe55f6909633380d14a5ef1d05089861_hq.gif','thongbaochinh'=>1,'idlt'=>3],
+            ['tentin' => 'Điểm HK1 DHCN3','tenkhongdau' => 'DiemHK1DHCN3','nd'=>'Điểm HK1 DHCN3','tomtat'=>'Điểm HK1 DHCN3','slide'=>1,'thongbaochinh'=>1,'video'=>'https://www.youtube.com/embed/IyvgDtkHaYo','img'=>'/img/source (7).gif','idlt'=>4],
+            ['tentin' => 'Bài giảng lập trình PHP','tenkhongdau' => 'BaiGiangLapTrinhPHP','nd'=>'Bài giảng lập trình PHP','tomtat'=>'Bài giảng lập trình PHP','slide'=>1,'thongbaochinh'=>1,'video'=>'https://www.youtube.com/embed/qusmHT5vNuw','img'=>'/img/source (6).gif','idlt'=>5]
         ]);
         lop::insert([
             ['tenlop' => 'ĐHCN3A'],
