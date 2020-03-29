@@ -16,8 +16,6 @@ class CreateTheloaisTable extends Migration
         Schema::create('theloais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tentl');
-            $table->unsignedBigInteger('idlt');
-            $table->foreign('idlt')->references('id')->on('loaitins')->onDelete('cascade');
             $table->timestamps();
         });
     }

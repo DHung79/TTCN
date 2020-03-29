@@ -33,7 +33,7 @@ return [
 
     'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => true,
+    'expire_on_close' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +166,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -190,10 +190,10 @@ return [
     | take place, and can be used to mitigate CSRF attacks. By default, we
     | do not enable this as other CSRF protection services are in place.
     |
-    | Supported: "lax", "strict", "none"
+    | Supported: "lax", "strict", "none", null
     |
     */
 
-    'same_site' => null,
+    'same_site' => 'lax',
 
 ];

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,33 +13,34 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login','dangnhapController@getLogin')->name('getlogin');
-Route::post('dangnhap','dangnhapController@Login')->name('login');
+Route::get('demo',function(){
+	return view('admin.theloai.danhsach');
+});
 
-Route::get('register','dangkycontroller@getRegister')->name('getregister');
-Route::post('dangky','dangkycontroller@Register')->name('register');
-
-Route::get('addadmin','dangkycontroller@getaddadmin')->name('getaddadmin')->middleware('isadmin');
-Route::post('themadmin','dangkycontroller@addadmin')->name('addadmin');
-
-Route::get('logout','dangnhapcontroller@logout')->name('logout');
-
-Route::get('admin', 'dangnhapcontroller@getadmin')->middleware('issuperadmin');
-
-Route::get('home','homecontroller@gethome')->name('home');
-
-Route::get('infor','dangnhapController@infor')->name('infor');
-
-Route::get('danhsachdetai','homecontroller@alldt')->name('dsdetai');
-
-Route::get('duyet','homecontroller@getduyetdt')->name('getduyetdt')->middleware('isadmin');
-Route::post('duyetdt','homecontroller@duyetdt')->name('duyetdt');
-
-Route::get('dangkydetai','homecontroller@getdkdetai')->name('getdkdetai');
-Route::post('xulydangkydetai','homecontroller@dkdetai')->name('dkdetai');
+Route::group(['prefix'=>'admin'],function(){
+	Route::group(['prefix'=>'loaitin'],function(){
+		Route::get('danhsach','loaitinController@getList')->name('loaitin');
+		Route::post('add','loaitinController@addLoaiTin')->name('addLoaiTin');
+		Route::post('edit','loaitinController@editLoaiTin')->name('editLoaiTin');
+		Route::get('menu','loaitinController@changeMenu')->name('changeMenu');
+		Route::get('gioithieu','loaitinController@changeGioiThieu')->name('changeGioiThieu');
+	});
+	Route::group(['prefix'=>'tintuc'],function(){
+		Route::get('danhsach','tintucController@getList')->name('tintuc');
+		Route::get('themtin','tintucController@showAdd')->name('showAddTin');
+		Route::post('add','tintucController@addTin')->name('addTin');
+		Route::get('suatin/{id}','tintucController@showEdit')->name('showEditTin');
+		Route::post('edit','tintucController@editTin')->name('editTin');
+		Route::get('changeSlide','tintucController@changeSlide')->name('changeSlide');
+		Route::get('changeThongBao','tintucController@changeThongBao')->name('changeThongBao');
+	});
+});
+Route::get('menu','loaitinController@getMenu')->name('menu');
+Route::get('trangchu','tintucController@getHome')->name('home');
+Route::get('tintuc/{tieude}','tintucController@viewTin')->name('viewTin');
+Route::get('loaitin/{tieude}','tintucController@listNews')->name('listNews');
 
