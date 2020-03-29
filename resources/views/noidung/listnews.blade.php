@@ -11,14 +11,14 @@
 							<div class="news">
 								<div class="row">
 									<div class="col-md-4">
-										<a href="{{route('viewTin',['tieude'=>$news->tenkhongdau.'-'.$news->id])}}">
+										<a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">
 											<img src="{{asset($news->img)}}">
 										</a>
 									</div>
 									<div class="col-md-8">
 										<div class="title">
-											<a href="{{route('viewTin',['tieude'=>$news->tenkhongdau.'-'.$news->id])}}">
-												<h3>{{$news->tieude}}</h3>
+											<a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">
+												<h3>{{$news->tentin}}</h3>
 											</a>
 											<span class="review">{{$news->tomtat}}</span>
 										</div>

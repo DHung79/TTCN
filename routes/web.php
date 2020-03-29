@@ -40,7 +40,12 @@ Route::group(['prefix'=>'admin'],function(){
 	});
 });
 Route::get('menu','loaitinController@getMenu')->name('menu');
-Route::get('home','tintucController@getHome')->name('home');
-Route::get('tintuc/{tieude}','tintucController@viewTin')->name('viewTin');
-Route::get('loaitin/{tieude}','tintucController@listNews')->name('listNews');
-
+Route::get('home','homeController@getHome')->name('home');
+Route::get('tintuc/{tentin}','tintucController@viewTin')->name('viewTin');
+Route::get('loaitin/{tentin}','tintucController@listNews')->name('listNews');
+Route::get('logout','dangnhapcontroller@logout')->name('logout');
+Route::get('data','DataController@defaultdata')->name('data');
+Route::get('infor','dangnhapController@infor')->name('infor');
+Route::post('dangnhap','dangnhapController@Login')->name('login');
+Route::get('addadmin','dangkycontroller@getaddadmin')->name('getaddadmin')->middleware('isadmin');
+Route::post('themadmin','dangkycontroller@addadmin')->name('addadmin');

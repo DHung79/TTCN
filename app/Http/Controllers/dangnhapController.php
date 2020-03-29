@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Session;
 use Auth;
-use App\User;
+use App\bomon;
+use App\diem;
 use App\giangvien;
-use App\bangcaps;
-use App\sinhvien;
-use App\khoa;
+use App\loaitin;
 use App\lop;
-use App\detai;
+use App\monhoc;
+use App\sinhvien;
+use App\tintuc;
+use App\User;
+
 
 class dangnhapController extends Controller
 {
@@ -38,7 +41,7 @@ class dangnhapController extends Controller
         $email = $request->email;
         $password = $request->password;
         if(Auth::attempt(['email'=>$email,'password'=>$password])){
-            return redirect('admin')->with('email',$email)->with('password',$password);
+            return redirect('home')->with('status', 'đăng nhập thành công');
         }else {
             return redirect()->back()->with('status', 'email hoặc password không chính xác');
         }

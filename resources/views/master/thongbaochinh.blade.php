@@ -3,7 +3,7 @@
 	<marquee direction="up" height="100%" onmouseover="this.stop();" onmouseout="this.start();">
 		<ul>
 			@foreach($thongbaochinh as $news)
-			<li><a href="{{route('viewTin',['tieude'=>$news->tenkhongdau.'-'.$news->id])}}">{{$news->tieude}}</a></li>
+			<li><a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">{{$news->tentin}}</a></li>
 			<hr>
 			@endforeach
 		</ul>

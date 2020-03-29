@@ -17,6 +17,9 @@ class CreateTintucsTable extends Migration
             $table->bigIncrements('id');
             $table->string('tentin');
             $table->string('nd');
+            $table->mediumText('tomtat');
+            $table->integer('slide');
+            $table->integer('thongbaochinh');
             $table->text('video')->nullable();
             $table->text('img')->nullable();
             $table->unsignedBigInteger('idlt');

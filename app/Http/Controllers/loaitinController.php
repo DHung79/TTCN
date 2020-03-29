@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\bomon;
+use App\diem;
+use App\giangvien;
 use App\loaitin;
+use App\lop;
+use App\monhoc;
+use App\sinhvien;
 use App\tintuc;
+use App\User;
 
 class loaitinController extends Controller
 {
@@ -53,7 +61,7 @@ class loaitinController extends Controller
     public function getMenu(){
     	$menu = loaitin::where('menu','1')->get();
     	$gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
-    	$menuGioiThieu = tintuc::where('idLoaiTin',$gioithieu->id)->get();
+    	$menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
     	return view('master.navigation',['menu'=>$menu,'gioithieu'=>$menuGioiThieu]);
     }
 }

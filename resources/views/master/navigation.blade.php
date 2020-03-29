@@ -15,15 +15,45 @@
 					</a>
 					<div class="dropdown-menu">
 						@foreach($gioithieu as $gt)
-						<a class="dropdown-item" href="{{route('viewTin',['tieude'=>$gt->tenkhongdau.'-'.$gt->id])}}">{{$gt->tieude}}</a>
+						<a class="dropdown-item" href="{{route('viewTin',['tentin'=>$gt->tenkhongdau.'-'.$gt->id])}}">{{$gt->tentin}}</a>
 						@endforeach
 					</div>
 				</li>
 				@foreach($menu as $list)
 				<li class="nav-item">
-					<a class="nav-link" href="{{route('listNews',['tieude'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
+					<a class="nav-link" href="{{route('listNews',['tentin'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
 				</li>
-				@endforeach     
+				@endforeach
+				@if(Auth::check())
+					@if(Auth::user()->level==3)
+						<li class="nav-item">
+						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
+							@foreach ($sinhvien as $sv)
+							{{$sv->ho}}
+							{{$sv->ten}}   
+							@endforeach
+						</a>
+						</li>
+					@endif
+					@if(Auth::user()->level==2)
+						<li class="nav-item ">
+						<a class="nav-link" href="{{ route('infor')}}" title="Trang cá nhân">
+							@foreach ($giangvien as $gv)
+							{{$gv->ho}}
+							{{$gv->ten}}   
+							@endforeach
+						</a>
+						</li>
+					@endif
+					@if(Auth::user()->level==1)
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ route('getaddadmin') }}">Thêm admin</a>
+						</li>
+					@endif
+					<li class="nav-item ">
+						<a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a>
+					</li>
+				@endif
 			</ul>
 		</div>  
 	</nav>

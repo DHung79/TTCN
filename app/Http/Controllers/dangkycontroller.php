@@ -7,25 +7,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Session;
-use App\User;
+use App\bomon;
+use App\diem;
 use App\giangvien;
-use App\bangcaps;
-use App\sinhvien;
-use App\khoa;
+use App\loaitin;
 use App\lop;
-use app\detai;
+use App\monhoc;
+use App\sinhvien;
+use App\tintuc;
+use App\User;
+
 
 class dangkycontroller extends Controller
 {
     function __construct() { 
         $lop = lop::get();
         $giangvien = giangvien::get();
-        $bangcap = bangcaps::get();
-        $khoa = khoa::get();
         view::share('lop',$lop);
         view::share('giangvien',$giangvien);
-        view::share('bangcap',$bangcap);
-        view::share('khoa',$khoa);
     }
     public function getRegister(){
     	return view('dangky');
@@ -125,28 +124,5 @@ class dangkycontroller extends Controller
         }else{
             return redirect()->back()->with('status', 'Mã giảng viên không chính xác');
         }
-    }
-    public function defaultdata(){
-        user::insert([ 
-            ['email' => 'daoleduyhung@gmail.com','level'=>1,'password'=> bcrypt('hung0403')],
-            ['email' => 'nguyenvanhoan@gmail.com','level'=>2,'password'=> bcrypt('hung0403')],
-            ['email' => 'lungthilinh@gmail.com','level'=>3,'password'=> bcrypt('hung0403')]
-        ]);
-        bangcaps::insert([
-            ['tencap' => 'Thạc sĩ'],
-            ['tencap' => 'Tiến sĩ']
-        ]);
-        khoa::insert([
-            ['tenkhoa' => 'CNTT'],
-            ['tenkhoa' => 'ĐTVT']
-        ]);
-        lop::insert([
-            ['tenlop' => 'ĐHCN3A','idkhoa'=>1],
-            ['tenlop' => 'ĐHCN3B','idkhoa'=>1],
-            ['tenlop' => 'ĐHCN3C','idkhoa'=>1],
-            ['tenlop' => 'ĐHVT3A','idkhoa'=>2],
-            ['tenlop' => 'ĐHVT3B','idkhoa'=>2],
-            ['tenlop' => 'ĐHVT3C','idkhoa'=>2]
-        ]);
     }
 }

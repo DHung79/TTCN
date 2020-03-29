@@ -7,22 +7,21 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Session;
 use Auth;
-use App\User;
+use App\bomon;
+use App\diem;
 use App\giangvien;
-use App\bangcaps;
-use App\sinhvien;
-use App\khoa;
+use App\loaitin;
 use App\lop;
-use App\detai;
+use App\monhoc;
+use App\sinhvien;
+use App\tintuc;
+use App\User;
+
 
 class sharecontroller extends Controller
 {
     function __construct()
     {
-        $detai = detai::get();
-        $capgv = giangvien::join('bangcaps','giangvien.idcap','=', 'bangcaps.id')->get();
-        view()->share('detai',$detai);
-        view()->share('capgv',$capgv);
         if(Auth::check())
         {
             $id = Auth::user()->id;

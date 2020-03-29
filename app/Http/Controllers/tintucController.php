@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\tintuc;
+use Auth;
+use App\bomon;
+use App\diem;
+use App\giangvien;
 use App\loaitin;
+use App\lop;
+use App\monhoc;
+use App\sinhvien;
+use App\tintuc;
+use App\User;
 use Illuminate\Support\Str;
 
 class tintucController extends Controller
 {
     public function getList(){
-    	$tintuc = tintuc::join('loaitin','tintuc.idLoaiTin','loaitin.id')
+    	$tintuc = tintuc::join('loaitin','tintuc.idlt','loaitin.id')
     			->orderBy('created_at','desc')
     			->select('tintuc.id','tintuc.tieude','tintuc.img','tintuc.tenkhongdau','tintuc.slide','loaitin.tenloaitin','tintuc.created_at','tintuc.thongbaochinh')->get();
     	return view('admin.tintuc.list',['tintuc'=>$tintuc]);
@@ -40,7 +48,7 @@ class tintucController extends Controller
     	$tintuc->tieude = $request->tieude;
     	$tintuc->tenkhongdau = strtolower(convert_vi_to_en($request->tieude));
     	$tintuc->tomtat = $request->tomtat;
-    	$tintuc->idLoaiTin = $request->loaitin;
+    	$tintuc->idlt = $request->loaitin;
     	$tintuc->slide = 0;
     	$tintuc->thongbaochinh = 0;
     	$name = Str::random(10);
@@ -75,7 +83,7 @@ class tintucController extends Controller
     	$tintuc->tieude = $request->tieude;
     	$tintuc->tenkhongdau = strtolower(convert_vi_to_en($request->tieude));
     	$tintuc->tomtat = $request->tomtat;
-    	$tintuc->idLoaiTin = $request->loaitin;
+    	$tintuc->idlt = $request->loaitin;
     	if(isset($request->upload)){
             $name = Str::random(10);
             $file = $request->file('upload');
@@ -109,7 +117,7 @@ class tintucController extends Controller
         $id = getid($tieude);
         $loaitin = loaitin::findOrFail($id);
         $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
-        $tintuc = tintuc::where('idLoaiTin',$id)->orderBy('created_at','desc')->paginate(10);
+        $tintuc = tintuc::where('idlt',$id)->orderBy('created_at','desc')->paginate(10);
         return view('noidung.listnews',['loaitin'=>$loaitin,'tintuc'=>$tintuc,'thongbaochinh'=>$thongbaochinh]);
     }
 

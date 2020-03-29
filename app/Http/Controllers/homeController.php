@@ -9,23 +9,22 @@ use Illuminate\Routing\Controller;
 use App\Repositories\UserRepository;
 use Session;
 use Auth;
-use App\User;
+use App\bomon;
+use App\diem;
 use App\giangvien;
-use App\bangcaps;
-use App\sinhvien;
-use App\khoa;
+use App\loaitin;
 use App\lop;
+use App\monhoc;
+use App\sinhvien;
+use App\tintuc;
+use App\User;
 
 class homeController extends sharecontroller
 {
     function __construct() { 
         view::share('stt','1');
         $user = user::get();
-        $capgv = giangvien::join('bangcaps','giangvien.idcap', 'bangcaps.id')
-        ->get();
-
         view::share('user',$user);
-        view::share('capgv',$capgv);
         // $this->middleware('auth')->except('logout');
         // if(auth::check()){
         $this->middleware(function ($request, $next) {
@@ -44,8 +43,15 @@ class homeController extends sharecontroller
         }
     });
     }
-    public function gethome(){
-        return view('pages.home');
+    public function getHome(){
+        $slides = tintuc::where('slide','1')->orderBy('created_at','desc')->take(5)->get();
+        $loaitin = loaitin::where('menu','1')->get();
+        $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
+        $box = array();
+        foreach($loaitin as $lt){
+            $box[$lt->tenloaitin] = loaitin::find($lt->id)->tintuc->take(7);
+        }
+        return view('noidung.trangchu',['slides'=>$slides,'box'=>$box,'thongbaochinh'=>$thongbaochinh]);
     }
     //đề tài//
     public function alldt(){
