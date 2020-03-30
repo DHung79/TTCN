@@ -34,6 +34,7 @@
 											<th>Tiêu Đề</th>
 											<th>Hình Ảnh</th>
 											<th>Slide</th>
+											<th>Video</th>
 											<th>Thông Báo</th>
 											<th>Loại Tin</th>
 											<th>Thao Tác</th>
@@ -48,6 +49,8 @@
 											<td>{{$list->tieude}}</td>
 											@endif
 											<td><img src="{{asset($list->img)}}" style="width: 180px; height: 60px;"></td>
+											<td class="video"><iframe src="{{($list->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</td>
 											<td>
 												@if($list->slide == 0)
 												<input type="checkbox" name="" class="check-slide" value="{{$list->id}}">
@@ -64,7 +67,7 @@
 											</td>
 											<td>{{$list->tenloaitin}}</td>
 											<td><a href="{{route('showEditTin',['id'=>$list->id])}}"  class="badge badge-success edit-btn">Edit</a>
-												<a href="javascript:" class="badge badge-danger delete-btn">Delete</a>
+												<a href="{{route('deltin',['id'=>$list->id])}}" class="badge badge-danger delete-btn">Delete</a>
 											</td>
 										</tr>
 										@endforeach

@@ -24,13 +24,6 @@
 					<a class="nav-link" href="{{route('listNews',['tieude'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
 				</li>
 				@endforeach
-				@if(Auth::check())
-					@if(Auth::user()->level==1)
-					<li class="nav-item active">
-						<a class="nav-link" href="{{ route('getaddadmin') }}">Thêm admin</a>
-					</li>
-					@endif
-				@endif
 			</ul>
 		</div>  
 	</nav>

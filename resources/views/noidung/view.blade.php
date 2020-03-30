@@ -14,7 +14,7 @@
 									<span>{{date('l d-m-yy h:i A',strtotime($tintuc->created_at)+7*60*60)}}</span>
 								</div>
 								<div class="index">
-									{!!$tintuc->nd!!}
+									{!!$tintuc->noidung!!}
 								</div>
 								@if($tintuc->video!=null)
 									<iframe src="{{asset($tintuc->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

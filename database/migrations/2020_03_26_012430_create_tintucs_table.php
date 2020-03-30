@@ -17,7 +17,7 @@ class CreateTintucsTable extends Migration
             $table->bigIncrements('id');
             $table->string('tieude');
             $table->string('tenkhongdau');
-            $table->string('nd');
+            $table->string('noidung');
             $table->mediumText('tomtat');
             $table->integer('slide');
             $table->integer('thongbaochinh');

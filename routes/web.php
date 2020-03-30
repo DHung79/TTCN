@@ -26,6 +26,7 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::get('danhsach','homeController@getListloaitin')->name('loaitin')->middleware('issuperadmin');
 		Route::post('add','homeController@addLoaiTin')->name('addLoaiTin');
 		Route::post('edit','homeController@editLoaiTin')->name('editLoaiTin');
+		Route::get('del/{id}','homeController@deltl')->name('deltl');
 		Route::get('menu','homeController@changeMenu')->name('changeMenu');
 		Route::get('gioithieu','homeController@changeGioiThieu')->name('changeGioiThieu');
 	});
@@ -35,14 +36,15 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::post('add','homeController@addTin')->name('addTin');
 		Route::get('suatin/{id}','homeController@showEdit')->name('showEditTin');
 		Route::post('edit','homeController@editTin')->name('editTin');
+		Route::get('del/{id}','homeController@deltin')->name('deltin');
 		Route::get('changeSlide','homeController@changeSlide')->name('changeSlide');
 		Route::get('changeThongBao','homeController@changeThongBao')->name('changeThongBao');
 	});
 });
 Route::get('menu','loaitinController@getMenu')->name('menu');
 Route::get('home','homeController@getHome')->name('home');
-Route::get('tintuc/{tentin}','homeController@viewTin')->name('viewTin');
-Route::get('loaitin/{tentin}','homeController@listNews')->name('listNews');
+Route::get('tintuc/{tieude}','homeController@viewTin')->name('viewTin');
+Route::get('loaitin/{tieude}','homeController@listNews')->name('listNews');
 Route::get('logout','dangnhapcontroller@logout')->name('logout');
 Route::get('data','DataController@defaultdata')->name('data');
 Route::get('infor','dangnhapController@infor')->name('infor');

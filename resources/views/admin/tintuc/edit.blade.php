@@ -42,6 +42,12 @@
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+											<label for="video">Link video:</label>
+											<textarea name="video" style="width: 100%; height: 50px;" placeholder="link có dạng https://www.youtube.com/embed/ + id video">{{$tintuc->video}}</textarea>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
 											<label for="tomtat">Tóm Tắt:</label>
 											<textarea name="tomtat" style="height: 200px; width: 100%">{{$tintuc->tomtat}}
 											</textarea>

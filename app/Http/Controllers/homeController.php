@@ -30,9 +30,11 @@ class homeController extends sharecontroller
         $menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
         $gtlist = loaitin::join('tintucs','loaitins.id','tintucs.idlt')->where('gioithieu','1')->get();
         $loaitin = loaitin::all();
+        $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
         $tintuc = tintuc::join('loaitins','tintucs.idlt','loaitins.id')
         ->orderBy('created_at','desc')
-        ->select('tintucs.id','tintucs.tieude','tintucs.img','loaitins.tenkhongdau','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
+        ->select('tintucs.id','tintucs.tieude','tintucs.img','loaitins.tenkhongdau','tintucs.video','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
+        view::share('thongbaochinh',$thongbaochinh);
         view::share('tintuc',$tintuc);
         view::share('gtlist',$gtlist);
         view::share('loaitin',$loaitin);
@@ -57,76 +59,11 @@ class homeController extends sharecontroller
     public function getHome(){
         $slides = tintuc::where('slide','1')->orderBy('created_at','desc')->take(5)->get();
         $loaitin = loaitin::where('menu','1')->get();
-        $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
         $box = array();
         foreach($loaitin as $lt){
             $box[$lt->tenloaitin] = loaitin::find($lt->id)->tintuc->take(7);
         }
-        return view('noidung.trangchu',['slides'=>$slides,'box'=>$box,'thongbaochinh'=>$thongbaochinh]);
-    }
-    //đề tài//
-    public function alldt(){
-        return view('pages.detai');
-    }
-
-    public function getdkdetai(){
-        if(Auth::check())
-        {   
-            return view('pages.dangkydetai');
-        }
-        else{
-            return redirect()->route('getlogin');
-        }
-    }
-
-    public function dkdetai(Request $request){
-        $this->validate($request,[
-            'tendt'=> 'required'
-        ],[
-            'tendt.required'=>'Bạn chưa nhập tên đề tài'
-        ]);
-        $detai = new detai;
-        $detai->idsinhvien = $request->idsinhvien;
-        $detai->tendetai = $request->tendt;
-        $detai->mota = $request->mota;
-        $detai->daduyet = 0;
-        $detai->thamkhao = 0;
-        $detai->save();
-        return redirect()->route('getdkdetai')->with('status',"Đăng ký đề tài thành công");
-    }
-    public function getduyetdt(){
-        return view('pages.duyetdetai');
-    }
-    public function duyetdt(Request $request){
-        $iddetai = $request->iddetai;
-        $svdt = $request->svdt;
-        $this->validate($request,[]);
-        $duyetdt = detai::where('id',$iddetai);
-        if ($request->duyet == 'duyet'){
-            $daduyet = $duyetdt->update(['daduyet'=>1]);
-            if($daduyet){
-                return redirect()->route('getduyetdt')
-                ->with('status',"Đã duyệt đề tài của sinh viên $svdt");
-            }
-            else{
-            return redirect()->route('getduyetdt')
-            ->with('status',"Duyệt thất bại");
-            } 
-        }
-        if ($request->xoa == 'xoa'){
-            $xoadt = $duyetdt->delete();
-            if($xoadt){
-                return redirect()->route('getduyetdt')
-                ->with('status',"Đã xóa đề tài của sinh viên $svdt");
-            }
-            else{
-            return redirect()->route('getduyetdt')
-            ->with('status',"Xóa thất bại");
-            }
-        }
-    }
-    public function thamkhao(){
-        return view('pages.thamkhao');
+        return view('noidung.trangchu',['slides'=>$slides,'box'=>$box]);
     }
 
     //tintuc
@@ -165,6 +102,7 @@ class homeController extends sharecontroller
         $file = $request->file('upload');
         $file->move('img',$name.'.png');
         $tintuc->img = 'img/'.$name.'.png';
+        $tintuc->video = $request->video;
         $tintuc->noidung = $request->noidung;
         $tintuc->save();
         return redirect()->route('tintuc')->with('thongbao','Đã thêm thành công.');
@@ -204,19 +142,21 @@ class homeController extends sharecontroller
         $tintuc->save();
         return redirect()->route('tintuc')->with('thongbao','Đã thêm thành công.');
     }
+    public function deltin($id){
+        $tintuc = tintuc::where('id',$id)->delete();
+        return redirect()->route('tintuc');
+    }
     public function viewTin($tieude){
         $id = getid($tieude);
         $tintuc = tintuc::findOrFail($id);
-        $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
-        return view('noidung.view',['tintuc'=>$tintuc,'thongbaochinh'=>$thongbaochinh]);
+        return view('noidung.view',['tintuc'=>$tintuc]);
     }
 
     public function listNews($tieude){
         $id = getid($tieude);
         $loaitin = loaitin::findOrFail($id);
-        $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
         $tintuc = tintuc::where('idlt',$id)->orderBy('created_at','desc')->paginate(10);
-        return view('noidung.listnews',['loaitin'=>$loaitin,'tintuc'=>$tintuc,'thongbaochinh'=>$thongbaochinh]);
+        return view('noidung.listnews',['loaitin'=>$loaitin,'tintuc'=>$tintuc]);
     }
 
     public function changeSlide(Request $request){
@@ -270,5 +210,9 @@ class homeController extends sharecontroller
         $loaitin->tenkhongdau = convert_vi_to_en($request->tenloaitin);
         $loaitin->save();
         return redirect()->route('loaitin')->with('thongbao','Đã cập nhật thành công.');
+    }
+    public function deltl($id){
+        $tintuc = loaitin::where('id',$id)->delete();
+        return redirect()->route('loaitin');
     }
 }

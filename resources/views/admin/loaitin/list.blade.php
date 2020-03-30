@@ -97,7 +97,7 @@
 											@endif
 										</td>
 										<td><a href="javascript:" data-id="{{$list->id}}" data-name="{{$list->tenloaitin}}"  class="badge badge-success edit-btn">Edit</a>
-											<a href="javascript:" class="badge badge-danger delete-btn">Delete</a>
+											<a href="{{route('deltl',['id'=>$list->id])}}"  class="badge badge-danger delete-btn">Delete</a>
 										</td>
 									</tr>
 									@endforeach
