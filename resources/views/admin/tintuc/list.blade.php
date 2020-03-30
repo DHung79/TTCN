@@ -48,7 +48,7 @@
 											@else
 											<td>{{$list->tieude}}</td>
 											@endif
-											<td><img src="{{asset($list->img)}}" style="width: 180px; height: 60px;"></td>
+											<td><img src="{{asset($list->img)}}" style="width: 180px; height: auto;"></td>
 											<td class="video"><iframe src="{{($list->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 											</td>
 											<td>
