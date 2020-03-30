@@ -33,8 +33,8 @@
 										<tr>
 											<th>Tiêu Đề</th>
 											<th>Hình Ảnh</th>
-											<th>Slide</th>
 											<th>Video</th>
+											<th>Slide</th>
 											<th>Thông Báo</th>
 											<th>Loại Tin</th>
 											<th>Thao Tác</th>

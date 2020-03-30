@@ -23,7 +23,7 @@ Route::get('demo',function(){
 
 Route::group(['prefix'=>'admin'],function(){
 	Route::group(['prefix'=>'loaitin'],function(){
-		Route::get('danhsach','homeController@getListloaitin')->name('loaitin')->middleware('issuperadmin');
+		Route::get('danhsach','homeController@getListloaitin')->name('loaitin')->middleware('isadmin');
 		Route::post('add','homeController@addLoaiTin')->name('addLoaiTin');
 		Route::post('edit','homeController@editLoaiTin')->name('editLoaiTin');
 		Route::get('del/{id}','homeController@deltl')->name('deltl');
@@ -31,7 +31,7 @@ Route::group(['prefix'=>'admin'],function(){
 		Route::get('gioithieu','homeController@changeGioiThieu')->name('changeGioiThieu');
 	});
 	Route::group(['prefix'=>'tintuc'],function(){
-		Route::get('danhsach','homeController@getListtintuc')->name('tintuc')->middleware('issuperadmin');
+		Route::get('danhsach','homeController@getListtintuc')->name('tintuc')->middleware('isadmin');
 		Route::get('themtin','homeController@showAdd')->name('showAddTin');
 		Route::post('add','homeController@addTin')->name('addTin');
 		Route::get('suatin/{id}','homeController@showEdit')->name('showEditTin');
@@ -49,5 +49,9 @@ Route::get('logout','dangnhapcontroller@logout')->name('logout');
 Route::get('data','DataController@defaultdata')->name('data');
 Route::get('infor','dangnhapController@infor')->name('infor');
 Route::post('dangnhap','dangnhapController@Login')->name('login');
-Route::get('addadmin','dangkycontroller@getaddadmin')->name('getaddadmin')->middleware('isadmin');
-Route::post('themadmin','dangkycontroller@addadmin')->name('addadmin');
+Route::group(['prefix'=>'admin'],function(){
+	Route::get('user','homecontroller@Admin')->name('admin')->middleware('issuperadmin');
+	Route::post('adduser','homecontroller@addUser')->name('addUser');
+	Route::post('edituser','homeController@editUser')->name('editUser');
+	Route::get('deluser/{id}','homeController@delUser')->name('delUser');
+});

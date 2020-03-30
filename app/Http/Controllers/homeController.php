@@ -215,4 +215,42 @@ class homeController extends sharecontroller
         $tintuc = loaitin::where('id',$id)->delete();
         return redirect()->route('loaitin');
     }
+    //user
+    public function Admin(){
+        return view('admin.addadmin');
+    }
+
+    public function addUser(Request $request){
+        $this->validate($request,[
+            'email'=>'required|email|unique:users,email',
+            'password'=> 'required|min:6|max:32',
+            'level'=>'required'
+        ],[
+            'email.required'=>'Chưa nhập email',
+            'email.email'=>'Email không đúng định dạng',
+            'email.unique'=>'Email đã có người đăng ký',
+            'password.required'=>'Chưa nhập mật khẩu',
+            'password.min:6'=>'Mật khẩu phải chứa nhiều hơn 6 ký tự và ít hơn 32 ký tự',
+            'password.max:32'=>'Mật khẩu phải chứa nhiều hơn 6 ký tự và ít hơn 32 ký tự',
+            'level.required'=>'Chưa phân quyền'
+        ]);
+        $user = new User;
+        $user->email= $request->email;
+        $user->password = bcrypt($request->password);
+        $user->level= $request->level;
+        $user->save();
+        return redirect()->route('admin')->with('thongbao','Đã thêm thành công.');
+    }
+    public function editUser(Request $request){
+        $user = User::find($request->id);
+        $user->email = $request->email;
+        $user->level = $request->level;
+        $user->save();
+        return redirect()->route('admin')->with('thongbao','Đã cập nhật thành công.');
+    }
+    public function delUser($id){
+        $user = user::where('id',$id)->delete();
+        return redirect()->route('admin');
+    }
+
 }
