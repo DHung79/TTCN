@@ -59,11 +59,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="right-panel">
-			@include('master.login')
-			@include('master.danhmuc')
-			@include('master.video')
-		</div>
+		@include('master.right-panel')
 	</div>
 </section>
 

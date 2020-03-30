@@ -23,14 +23,14 @@ Route::get('demo',function(){
 
 Route::group(['prefix'=>'admin'],function(){
 	Route::group(['prefix'=>'loaitin'],function(){
-		Route::get('danhsach','homeController@getListloaitin')->name('loaitin');
+		Route::get('danhsach','homeController@getListloaitin')->name('loaitin')->middleware('issuperadmin');
 		Route::post('add','homeController@addLoaiTin')->name('addLoaiTin');
 		Route::post('edit','homeController@editLoaiTin')->name('editLoaiTin');
 		Route::get('menu','homeController@changeMenu')->name('changeMenu');
 		Route::get('gioithieu','homeController@changeGioiThieu')->name('changeGioiThieu');
 	});
 	Route::group(['prefix'=>'tintuc'],function(){
-		Route::get('danhsach','homeController@getListtintuc')->name('tintuc');
+		Route::get('danhsach','homeController@getListtintuc')->name('tintuc')->middleware('issuperadmin');
 		Route::get('themtin','homeController@showAdd')->name('showAddTin');
 		Route::post('add','homeController@addTin')->name('addTin');
 		Route::get('suatin/{id}','homeController@showEdit')->name('showEditTin');

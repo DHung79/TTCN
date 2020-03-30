@@ -32,7 +32,7 @@ class homeController extends sharecontroller
         $loaitin = loaitin::all();
         $tintuc = tintuc::join('loaitins','tintucs.idlt','loaitins.id')
         ->orderBy('created_at','desc')
-        ->select('tintucs.id','tintucs.tentin','tintucs.img','loaitins.tenkhongdau','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
+        ->select('tintucs.id','tintucs.tieude','tintucs.img','loaitins.tenkhongdau','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
         view::share('tintuc',$tintuc);
         view::share('gtlist',$gtlist);
         view::share('loaitin',$loaitin);

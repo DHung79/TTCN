@@ -15,13 +15,13 @@
 					</a>
 					<div class="dropdown-menu">
 						@foreach($gtlist as $gt)
-						<a class="dropdown-item" href="{{route('viewTin',['tentin'=>$gt->tenkhongdau.'-'.$gt->id])}}">{{$gt->tentin}}</a>
+						<a class="dropdown-item" href="{{route('viewTin',['tieude'=>$gt->tenkhongdau.'-'.$gt->id])}}">{{$gt->tieude}}</a>
 						@endforeach
 					</div>
 				</li>
 				@foreach($menu as $list)
 				<li class="nav-item">
-					<a class="nav-link" href="{{route('listNews',['tentin'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
+					<a class="nav-link" href="{{route('listNews',['tieude'=>$list->tenkhongdau.'-'.$list->id])}}">{{$list->tenloaitin}}</a>
 				</li>
 				@endforeach
 				@if(Auth::check())

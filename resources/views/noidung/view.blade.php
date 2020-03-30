@@ -8,7 +8,7 @@
 						<div class="main-panel">
 							<div class="news">
 								<div class="news-title">
-									<h3><span style="text-align: justify;font-size: 20px;">{{$tintuc->tentin}}</span></h3>
+									<h3><span style="text-align: justify;font-size: 20px;">{{$tintuc->tieude}}</span></h3>
 								</div>
 								<div class="time-up">
 									<span>{{date('l d-m-yy h:i A',strtotime($tintuc->created_at)+7*60*60)}}</span>
@@ -16,15 +16,14 @@
 								<div class="index">
 									{!!$tintuc->nd!!}
 								</div>
+								@if($tintuc->video!=null)
+									<iframe src="{{asset($tintuc->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								@endif
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="right-panel">
-					@include('master.login')
-					@include('master.thongbaochinh')
-					@include('master.video')
-				</div>
+				@include('master.right-panel')
 			</div>
 		</section>
 @endsection

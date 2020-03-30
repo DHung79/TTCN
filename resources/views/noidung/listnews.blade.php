@@ -11,17 +11,20 @@
 							<div class="news">
 								<div class="row">
 									<div class="col-md-4">
-										<a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">
+										<a href="{{route('viewTin',['tieude'=>$news->tenkhongdau.'-'.$news->id])}}">
 											<img src="{{asset($news->img)}}">
 										</a>
 									</div>
 									<div class="col-md-8">
 										<div class="title">
-											<a href="{{route('viewTin',['tentin'=>$news->tenkhongdau.'-'.$news->id])}}">
-												<h3>{{$news->tentin}}</h3>
+											<a href="{{route('viewTin',['tieude'=>$news->tenkhongdau.'-'.$news->id])}}">
+												<h3>{{$news->tieude}}</h3>
 											</a>
 											<span class="review">{{$news->tomtat}}</span>
 										</div>
+										@if($news->video!=null)
+										<iframe src="{{asset($news->video)}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										@endif
 									</div>
 								</div>
 							</div>
@@ -29,18 +32,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="right-panel">
-					@include('master.login')
-					@include('master.thongbaochinh')
-					@include('master.video')
-				</div>
+				@include('master.right-panel')
 			</div>
 		</section>
 @endsection
 
-@section('script')
+{{-- @section('script')
 	@include('master.script')
-@endsection
+@endsection --}}
 
 @section('style')
 <style type="text/css">
