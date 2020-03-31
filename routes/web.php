@@ -49,6 +49,8 @@ Route::get('logout','dangnhapcontroller@logout')->name('logout');
 Route::get('data','DataController@defaultdata')->name('data');
 Route::get('infor','dangnhapController@infor')->name('infor');
 Route::post('dangnhap','dangnhapController@Login')->name('login');
+Route::get('bangdiem','homeController@bangdiem')->name('bangdiem');
+Route::post('addbangdiem','homecontroller@addbangdiem')->name('addbangdiem');
 Route::group(['prefix'=>'admin'],function(){
 	Route::get('user','homecontroller@Admin')->name('admin')->middleware('issuperadmin');
 	Route::post('adduser','homecontroller@addUser')->name('addUser');

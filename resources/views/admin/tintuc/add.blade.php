@@ -15,7 +15,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="tieude">Tiêu Đề:</label>
-											<textarea name="tieude" style="width: 100%; height: 100px;"></textarea>
+											<textarea name="tieude" style="width: 100%; height: 100px;" required></textarea>
 										</div>
 									</div>
 									<div class="col-md-4">
@@ -27,7 +27,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="loaitin">Loại Tin:</label>
-											<select name="loaitin" class="form-control form-control-sm">
+											<select name="loaitin" class="form-control form-control-sm" required>
 												@foreach($loaitin as $list)
 												<option value="{{$list->id}}">{{$list->tenloaitin}}</option>
 												@endforeach
@@ -43,13 +43,13 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="tomtat">Tóm Tắt:</label>
-											<textarea name="tomtat" style="height: 200px; width: 100%"></textarea>
+											<textarea name="tomtat" style="height: 200px; width: 100%" required></textarea>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<label for="noidung">Nội Dung:</label>
-											<textarea name="noidung" style="width: 100%;"></textarea>
+											<textarea name="noidung" style="width: 100%;" required></textarea>
 										</div>
 									</div>
 									<div class="col-md-2">

@@ -64,7 +64,7 @@
 							<div class="row">
 								<div class="col-md-6">
 									<a href="{{route('viewTin',['tieude'=>$value[0]->tenkhongdau.'-'.$value[0]->id])}}">
-										@if ($value[0]->video != null)
+										@if ($value[0]->img != null)
 										<img src="{{asset($value[0]->img)}}">
 										@endif
 									</a>

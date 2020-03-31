@@ -24,23 +24,29 @@ class homeController extends sharecontroller
 {
     function __construct() { 
         view::share('stt','1');
+        $sinhvien = sinhvien::get();
+        view::share('sinhvien',$sinhvien);
+        $monhoc = monhoc::get();
+        view::share('monhoc',$monhoc);
+        $giangvien = giangvien::get();
+        view::share('giangvien',$giangvien);
         $user = user::get();
+        view::share('user',$user);
         $menu = loaitin::where('menu','1')->get();
+        view::share('menu',$menu);
         $gioithieu = loaitin::where('gioithieu','1')->firstOrFail();
         $menuGioiThieu = tintuc::where('idlt',$gioithieu->id)->get();
+        view::share('gioithieu',$menuGioiThieu);
         $gtlist = loaitin::join('tintucs','loaitins.id','tintucs.idlt')->where('gioithieu','1')->get();
+        view::share('gtlist',$gtlist);
         $loaitin = loaitin::all();
+        view::share('loaitin',$loaitin);
         $thongbaochinh = tintuc::where('thongbaochinh','1')->orderBy('created_at','desc')->take(6)->get();
+        view::share('thongbaochinh',$thongbaochinh);
         $tintuc = tintuc::join('loaitins','tintucs.idlt','loaitins.id')
         ->orderBy('created_at','desc')
         ->select('tintucs.id','tintucs.tieude','tintucs.img','loaitins.tenkhongdau','tintucs.video','tintucs.slide','loaitins.tenloaitin','tintucs.created_at','tintucs.thongbaochinh')->get();
-        view::share('thongbaochinh',$thongbaochinh);
         view::share('tintuc',$tintuc);
-        view::share('gtlist',$gtlist);
-        view::share('loaitin',$loaitin);
-        view::share('user',$user);
-        view::share('menu',$menu);
-        view::share('gioithieu',$menuGioiThieu);
         $this->middleware(function ($request, $next) {
         $this->id = Auth::user();
         if($this->id!=null){
@@ -61,7 +67,7 @@ class homeController extends sharecontroller
         $loaitin = loaitin::where('menu','1')->get();
         $box = array();
         foreach($loaitin as $lt){
-            $box[$lt->tenloaitin] = loaitin::find($lt->id)->tintuc->take(7);
+            $box[$lt->tenloaitin] = loaitin::find($lt->id)->tintuc->take(5);
         }
         return view('noidung.trangchu',['slides'=>$slides,'box'=>$box]);
     }
@@ -100,8 +106,8 @@ class homeController extends sharecontroller
         $tintuc->thongbaochinh = 0;
         $name = Str::random(10);
         $file = $request->file('upload');
-        $file->move('img',$name.'.png');
-        $tintuc->img = 'img/'.$name.'.png';
+        $file->move('img',$name);
+        $tintuc->img = 'img/'.$name;
         $tintuc->video = $request->video;
         $tintuc->noidung = $request->noidung;
         $tintuc->save();
@@ -252,5 +258,36 @@ class homeController extends sharecontroller
         $user = user::where('id',$id)->delete();
         return redirect()->route('admin');
     }
-
+    public function bangdiem(){
+        $sinhvien = sinhvien::join('lop','lop.id','sinhvien.idlop')
+        ->join('diems','diems.idsv','sinhvien.id')->get();
+        // $diem = diem::join('sinhvien','sinhvien.id','diems.idsv')
+        // ->join('monhocs','monhocs.id','diems.idmonhoc')
+        // ->join('giangvien','giangvien.id','diems.idgv')
+        // ->select('sinhvien.*','monhocs.*','giangvien.*')
+        // ->get();
+        $diem = array(diem::get(),monhoc::get(),giangvien::get());
+        return view('noidung.bangdiem',['sinhvien'=>$sinhvien,'diem'=>$diem]);
+    }
+    public function editbangdiem(Request $request){
+        $diem = diem::find($request->id);
+        $diem->cc = $request->cc;
+        $diem->tx = $request->tx;
+        $diem->gk = $request->gk;
+        $diem->kt = $request->kt;
+        $diem->idgv = $request->idgv;
+        $diem->save();
+        return redirect()->route('bangdiem');
+    }
+    public function addbangdiem(Request $request){
+        $sinhvien = sinhvien::get();
+        $diem = new diem;
+        $diem->idmonhoc = $request->idmh;
+        $diem->idgv = $request->idgv;
+        foreach($sinhvien as $sv){
+            $diem->idsv = $sv->id;
+            $diem->save();
+        }
+        return redirect()->route('bangdiem');
+    }
 }
